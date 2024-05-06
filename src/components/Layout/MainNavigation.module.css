@@ -1,0 +1,45 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+  }
+  
+  .header a {
+    white-space: nowrap;
+    color: black;
+    text-decoration: none;
+  }
+  
+  .header .site_title {
+    font-size: 23px;
+  }
+  .site_title:hover{
+    text-decoration: underline;
+    color: blue;
+
+  }
+  
+  .tabs{
+    display: flex;
+    gap: 2rem;
+
+  }
+
+  .selected_tab{
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .unselected_tab{
+    color: black;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  @media (max-width: 600px) {
+    .tabs{
+      gap: 1rem;
+    }
+  }
