@@ -1,0 +1,12 @@
+{
+  "hosting": {
+    "public": "build",
+    "site": "pokefy",
+    
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
