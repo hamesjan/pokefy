@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import classes from "./CallbackPage.module.css";
+import hpbar from "../../assets/images/hpbar.png";
 
 function CallbackPage() {
   const [userData, setUserData] = useState({ topGenres: [], minutesPlayed: 0 });
@@ -73,7 +75,6 @@ function CallbackPage() {
       // Fetch images for each Pokémon in the list
       await Promise.all(
         pList.map(async (pokemon) => {
-          console.log(pokemon);
           const response = await axios.get(
             `https://pokeapi.co/api/v2/pokemon/${pokemon.toLowerCase()}`
           );
@@ -120,6 +121,7 @@ function CallbackPage() {
           },
         }
       );
+      console.log(response.data.choices[0].message.content);
       const pokemonString = response.data.choices[0].message.content;
       const firstIndexOfBracket = pokemonString.indexOf("[") + 1;
       const parsedPokemonList = pokemonString
@@ -152,22 +154,37 @@ function CallbackPage() {
       );
       window.location.hash = ""; // Clean up the URL
     }
-  }, []);
+  });
 
   return (
     <div>
       {userData.topGenres.length ? (
         <div>
-          {pokemonList.map((pokemon, index) => (
-            <div key={index}>
-              <h3>{pokemon}</h3>
-              <img
-                src={pokemonImages[pokemon]}
-                alt={pokemon}
-                style={{ width: "100px", height: "100px" }}
-              />
-            </div>
-          ))}
+          <h1>Here are your results:</h1>
+          <div className={classes.grid_holder}>
+            {pokemonList.map((pokemon, index) => (
+              <div key={index} className={classes.rectangle}>
+                <div className={classes.grid_container}>
+                  <div className={classes.grid_item_large}>
+                    <img
+                      src={pokemonImages[pokemon]}
+                      alt={pokemon}
+                      style={{ width: "110px", height: "110px" }}
+                    />
+                  </div>
+                  <div className={classes.grid_item}>
+                    {" "}
+                    <h3>{pokemon.toUpperCase()}</h3>
+                  </div>
+                  <div className={classes.grid_item}>
+                    <img src={hpbar} alt="hpbar" className={classes.hp_bar} />
+                  </div>
+                  <div className={classes.grid_item_small}>Lv. 30</div>
+                  <div className={classes.grid_item_small}>100/100</div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       ) : (
         <p>Loading...</p>

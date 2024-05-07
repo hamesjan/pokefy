@@ -1,6 +1,13 @@
+@font-face {
+  font-family: 'PokemonPixel';
+  src: url('assets/fonts/PokemonClassic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
     margin: 0;
-    font-family: 'Times New Roman', serif;
+    font-family: 'PokemonPixel', serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     padding: 16px;
@@ -10,6 +17,3 @@ body {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
   }
   
-@tailwind base;
-@tailwind components;
-@tailwind utilities;

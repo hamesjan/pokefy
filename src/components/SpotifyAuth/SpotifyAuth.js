@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -32,7 +32,7 @@ function SpotifyAuth() {
         navigate("/profile", { state: { userData } });
       });
     }
-  }, []);
+  });
 
   const fetchUserData = async (token) => {
     const config = {
@@ -42,7 +42,6 @@ function SpotifyAuth() {
     };
     try {
       const response = await axios.get("https://api.spotify.com/v1/me", config);
-      console.log(response.data);
       return response.data; // Contains user data
     } catch (error) {
       console.error("Error fetching data from Spotify: ", error);
