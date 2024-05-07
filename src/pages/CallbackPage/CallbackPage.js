@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import classes from "./CallbackPage.module.css";
 import hpbar from "../../assets/images/hpbar.png";
+import pokeball from "../../assets/images/pokeball.webp";
 
 function CallbackPage() {
   const [userData, setUserData] = useState({ topGenres: [], minutesPlayed: 0 });
@@ -169,7 +170,20 @@ function CallbackPage() {
                     <img
                       src={pokemonImages[pokemon]}
                       alt={pokemon}
-                      style={{ width: "110px", height: "110px" }}
+                      style={{ width: "110px", height: "110px", zIndex: 2 }}
+                    />
+                    <img
+                      src={pokeball}
+                      alt="pokeball"
+                      style={{
+                        width: "70px",
+                        height: "70px",
+                        position: "absolute",
+                        left: "-5px",
+                        top: "-5px",
+                        opacity: 0.9,
+                        zIndex: 1,
+                      }}
                     />
                   </div>
                   <div className={classes.grid_item}>
