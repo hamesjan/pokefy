@@ -10,6 +10,16 @@ const MainNavigation = () => {
         <a className={classes.site_title} href="/">
           Pokefy
         </a>
+        <div style={{ flex: 1 }} />
+        <nav className={classes.site_nav}>
+          <ul>
+            <li>
+              <a className={classes.sub_title} href="/">
+                About
+              </a>
+            </li>
+          </ul>
+        </nav>
       </header>
     </>
   );

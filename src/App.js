@@ -8,14 +8,16 @@ import CallbackPage from "./pages/CallbackPage/CallbackPage";
 
 function App() {
   return (
-    <Layout>
-      <Routes>
-        <Route exact path="/" element={<Overview />} />
-        <Route path="/callback" element={<CallbackPage />} />
-        <Route exact path="/404" element={<Error404 />} />
-        {/* <Route path="*" element={<Navigate replace to="/404" />} /> */}
-      </Routes>
-    </Layout>
+    <div className="background">
+      <Layout>
+        <Routes>
+          <Route exact path="/" element={<Overview />} />
+          <Route path="/callback" element={<CallbackPage />} />
+          <Route exact path="/404" element={<Error404 />} />
+          {/* <Route path="*" element={<Navigate replace to="/404" />} /> */}
+        </Routes>
+      </Layout>
+    </div>
   );
 }
 

@@ -1,0 +1,30 @@
+.connect_button {
+    text-align: center;
+    border: none;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    background-color: #1DB954; /* Spotify green */
+    color: white;
+    border-radius: 50px; /* Adjust for more or less roundness */
+    cursor: pointer;
+    transition: box-shadow 0.3s, transform 0.1s;
+    text-shadow: 2px 2px 0px black;
+    font-family: 'PokemonPixel', serif;
+    font-size: 20px; /* Adjust font size as needed */
+    font-weight: bold; /* Bold font for the text */
+  }
+  
+  .connect_button:hover {
+    box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.6); /* White highlight */
+  }
+  
+  .connect_button:active {
+    transform: translateY(4px); /* Push the button down a bit */
+  }
+  
+  .spotify_logo {
+    width: 40px; /* Adjust size as needed */
+    height: 40px; /* Adjust size as needed */
+    position: relative;
+    top: 10px;
+  }

@@ -65,7 +65,7 @@
     bottom: 10px;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
     .rectangle {
         width: 250px;
       font-size: medium;

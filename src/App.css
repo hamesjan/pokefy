@@ -1,0 +1,8 @@
+.background {
+    background-image: url('assets/images/bkgrnd.png');
+    height: 100vh; /* Full height of the viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
+    background-attachment: fixed;
+  }

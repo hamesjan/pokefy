@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #ffffff;
+    padding: 32px;
   }
   
   .header a {
@@ -15,6 +15,16 @@
     font-size: 23px;
   }
   .site_title:hover{
+    text-decoration: underline;
+    color: blue;
+
+  }
+
+  .sub_title{
+    font-size: 15px;
+  }
+
+  .sub_title:hover{
     text-decoration: underline;
     color: blue;
 
@@ -42,4 +52,18 @@
     .tabs{
       gap: 1rem;
     }
+
+    .site_nav {
+      gap: 10px;
+      font-size: small;
+    }
+  }
+
+  .site_nav ul {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
   }

@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./SpotifyAuth.css";
+import spotifyLogo from "../../assets/images/spotifylogo.png";
 
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const REDIRECT_URI = "http://localhost:3000/callback";
@@ -57,7 +59,10 @@ function SpotifyAuth() {
 
   return (
     <div>
-      <button onClick={handleLogin}>Login to Spotify</button>
+      <button className="connect_button" onClick={handleLogin}>
+        Connect
+        <img src={spotifyLogo} alt="Spotify" className="spotify_logo" />
+      </button>
     </div>
   );
 }
