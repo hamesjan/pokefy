@@ -4,10 +4,59 @@ import classes from "./CallbackPage.module.css";
 import hpbar from "../../assets/images/hpbar.png";
 import pokeball from "../../assets/images/pokeball.webp";
 
+import electric from "../../assets/images/electrictype.png";
+import normal from "../../assets/images/normaltype.png";
+import poison from "../../assets/images/poisontype.png";
+import bug from "../../assets/images/bugtype.png";
+import dark from "../../assets/images/darktype.png";
+import dragon from "../../assets/images/dragontype.png";
+import fairy from "../../assets/images/fairytype.png";
+import fighting from "../../assets/images/fightingtype.png";
+import fire from "../../assets/images/firetype.png";
+import flying from "../../assets/images/flyingtype.png";
+import ghost from "../../assets/images/grasstype.png";
+import grass from "../../assets/images/poisontype.png";
+import ground from "../../assets/images/groundtype.png";
+import ice from "../../assets/images/icetype.png";
+import psychic from "../../assets/images/psychictype.png";
+import rock from "../../assets/images/rocktype.png";
+import steel from "../../assets/images/steeltype.png";
+import water from "../../assets/images/watertype.png";
+
+import trainer from "../../assets/images/trainer.png";
+import DialogBox from "../../components/Dialog/Dialog";
+
+const typeImages = {
+  electric: electric,
+  normal: normal,
+  poison: poison,
+  bug: bug,
+  dark: dark,
+  dragon: dragon,
+  fairy: fairy,
+  fire: fire,
+  fighting: fighting,
+  flying: flying,
+  ghost: ghost,
+  grass: grass,
+  ground: ground,
+  ice: ice,
+  psychic: psychic,
+  rock: rock,
+  steel: steel,
+  water: water,
+};
+
 function CallbackPage() {
   const [userData, setUserData] = useState({ topGenres: [], minutesPlayed: 0 });
   const [pokemonImages, setPokemonImages] = useState({});
   const [pokemonList, setPokemonList] = useState([]);
+  const [pokemonTypes, setPokemonTypes] = useState({});
+  const [isActive, setIsActive] = useState(false);
+
+  const handleClick = () => {
+    setIsActive(!isActive);
+  };
 
   const fetchPlaybackData = async (token) => {
     const headers = {
@@ -72,6 +121,7 @@ function CallbackPage() {
   const fetchPokemonImages = async (pList) => {
     try {
       const pokemonImagesData = {};
+      const pokemonTypesData = {};
 
       // Fetch images for each Pokémon in the list
       await Promise.all(
@@ -80,11 +130,15 @@ function CallbackPage() {
             `https://pokeapi.co/api/v2/pokemon/${pokemon.toLowerCase()}`
           );
           pokemonImagesData[pokemon] = response.data.sprites.front_default;
+          pokemonTypesData[pokemon] = response.data.types.map(
+            (typeInfo) => typeInfo.type.name
+          );
         })
       );
 
       // Update state with the fetched images
       setPokemonImages(pokemonImagesData);
+      setPokemonTypes(pokemonTypesData);
     } catch (error) {
       console.error("Error fetching Pokémon images:", error);
     }
@@ -144,6 +198,7 @@ function CallbackPage() {
     if (token) {
       Promise.all([fetchUserData(token), fetchPlaybackData(token)]).then(
         ([userData, playbackData]) => {
+          console.log(userData.topArtists);
           setUserData({
             topGenres: userData.topGenres,
             topArtists: userData.topArtists,
@@ -159,45 +214,105 @@ function CallbackPage() {
 
   return (
     <div>
+      {/* {isActive ? <DialogBox isActive={isActive} /> : ""} */}
       {userData.topGenres.length ? (
-        <div>
-          <h1>Here are your results:</h1>
-          <div className={classes.grid_holder}>
-            {pokemonList.map((pokemon, index) => (
-              <div key={index} className={classes.rectangle}>
-                <div className={classes.grid_container}>
-                  <div className={classes.grid_item_large}>
-                    <img
-                      src={pokemonImages[pokemon]}
-                      alt={pokemon}
-                      style={{ width: "110px", height: "110px", zIndex: 2 }}
-                    />
-                    <img
-                      src={pokeball}
-                      alt="pokeball"
-                      style={{
-                        width: "70px",
-                        height: "70px",
-                        position: "absolute",
-                        left: "-5px",
-                        top: "-5px",
-                        opacity: 0.9,
-                        zIndex: 1,
-                      }}
-                    />
+        <div style={{ textAlign: "center" }}>
+          <h2 className={classes.results_text}>Here are your results:</h2>
+          <div className={classes.all_holder}>
+            <div className={classes.grid_holder}>
+              {pokemonList.map((pokemon, index) => (
+                <div
+                  key={index}
+                  className={classes.rectangle}
+                  onClick={handleClick}
+                >
+                  <div className={classes.grid_container}>
+                    <div className={classes.grid_item_large}>
+                      <img
+                        src={pokemonImages[pokemon]}
+                        alt={pokemon}
+                        className={classes.pokemon_pic}
+                      />
+                      <img
+                        src={pokeball}
+                        alt="pokeball"
+                        className={classes.pokeball}
+                      />
+                    </div>
+                    <div className={classes.grid_item}>
+                      {" "}
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "0px",
+                        }}
+                      >
+                        <h3 style={{ marginBottom: "0px", marginTop: "0px" }}>
+                          {pokemon.toUpperCase()}
+                        </h3>
+                        <div
+                          style={{
+                            display: "flex",
+                            marginBottom: "15px",
+                            marginTop: "0px",
+                            borderRadius: "36%",
+                            padding: "2px",
+                            overflow: "hidden",
+                            backgroundColor: "#15A942",
+                          }}
+                        >
+                          <div style={{ flex: 1 }} />
+                          {pokemonTypes[pokemon]?.map((type) => (
+                            <img
+                              key={type}
+                              src={typeImages[type]}
+                              alt={`${type} type`}
+                              className={classes.type_images}
+                            />
+                          ))}
+                          <div style={{ flex: 1 }} />
+                        </div>
+                      </div>
+                    </div>
+                    <div className={classes.grid_item}>
+                      <img src={hpbar} alt="hpbar" className={classes.hp_bar} />
+                    </div>
+                    <div
+                      className={classes.grid_item_small}
+                      style={{ marginTop: "5px" }}
+                    >
+                      Lv. 30
+                    </div>
+                    <div className={classes.grid_item_small}>100/100</div>
                   </div>
-                  <div className={classes.grid_item}>
-                    {" "}
-                    <h3>{pokemon.toUpperCase()}</h3>
-                  </div>
-                  <div className={classes.grid_item}>
-                    <img src={hpbar} alt="hpbar" className={classes.hp_bar} />
-                  </div>
-                  <div className={classes.grid_item_small}>Lv. 30</div>
-                  <div className={classes.grid_item_small}>100/100</div>
                 </div>
+              ))}
+            </div>
+            <div className={classes.stats_holder}>
+              <div className={classes.top_genres_holder}>
+                <h4 className={classes.top_genres_title}>Top Genres</h4>
+                <ul>
+                  {userData.topGenres.map((genre) => (
+                    <li key={genre}>{genre}</li>
+                  ))}
+                </ul>
+                <img
+                  key={"trainer"}
+                  src={trainer}
+                  alt={"trainer"}
+                  className={classes.trainer_image}
+                />
               </div>
-            ))}
+              <div className={classes.top_artists_holder}>
+                <h4 className={classes.top_artists_title}>Top Artists</h4>
+                <ul>
+                  {userData.topArtists.map((artist) => (
+                    <li key={artist.id}>{artist.name}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       ) : (
