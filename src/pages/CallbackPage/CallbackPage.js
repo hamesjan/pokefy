@@ -24,7 +24,7 @@ import steel from "../../assets/images/steeltype.png";
 import water from "../../assets/images/watertype.png";
 
 import trainer from "../../assets/images/trainer.png";
-import DialogBox from "../../components/Dialog/Dialog";
+// import DialogBox from "../../components/Dialog/Dialog";
 
 const typeImages = {
   electric: electric,
@@ -52,10 +52,10 @@ function CallbackPage() {
   const [pokemonImages, setPokemonImages] = useState({});
   const [pokemonList, setPokemonList] = useState([]);
   const [pokemonTypes, setPokemonTypes] = useState({});
-  const [isActive, setIsActive] = useState(false);
+  // const [isActive, setIsActive] = useState(false);
 
-  const handleClick = () => {
-    setIsActive(!isActive);
+  const handleClick = (p) => {
+    window.open(`https://www.pokemon.com/us/pokedex/${p}`, "_blank");
   };
 
   const fetchPlaybackData = async (token) => {
@@ -215,7 +215,7 @@ function CallbackPage() {
   return (
     <div>
       {/* {isActive ? <DialogBox isActive={isActive} /> : ""} */}
-      {userData.topGenres.length ? (
+      {pokemonList.length ? (
         <div style={{ textAlign: "center" }}>
           <h2 className={classes.results_text}>Here are your results:</h2>
           <div className={classes.all_holder}>
@@ -224,7 +224,9 @@ function CallbackPage() {
                 <div
                   key={index}
                   className={classes.rectangle}
-                  onClick={handleClick}
+                  onClick={() => {
+                    handleClick(pokemon);
+                  }}
                 >
                   <div className={classes.grid_container}>
                     <div className={classes.grid_item_large}>
@@ -316,7 +318,14 @@ function CallbackPage() {
           </div>
         </div>
       ) : (
-        <p>Loading...</p>
+        <div className={classes.loading_container}>
+          <img
+            src={pokeball}
+            alt="Loading Pokémon"
+            className={classes.loading_image}
+          />
+          <p className={classes.loading_text}>Loading...</p>
+        </div>
       )}
     </div>
   );

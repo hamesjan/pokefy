@@ -14,7 +14,7 @@ const MainNavigation = () => {
         <nav className={classes.site_nav}>
           <ul>
             <li>
-              <a className={classes.sub_title} href="/">
+              <a className={classes.sub_title} href="/about">
                 About
               </a>
             </li>
