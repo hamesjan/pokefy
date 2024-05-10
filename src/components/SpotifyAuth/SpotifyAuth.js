@@ -5,7 +5,7 @@ import "./SpotifyAuth.css";
 import spotifyLogo from "../../assets/images/spotifylogo.png";
 
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-const REDIRECT_URI = "http://localhost:3000/callback";
+const REDIRECT_URI = "https://pokefy.web.app/callback";
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
 const RESPONSE_TYPE = "token";
 const SCOPE =
@@ -30,8 +30,7 @@ function SpotifyAuth() {
 
     if (token) {
       fetchUserData(token).then((userData) => {
-        // Assuming you have a route setup for '/profile'
-        navigate("/profile", { state: { userData } });
+        navigate("/callback", { state: { userData } });
       });
     }
   });
