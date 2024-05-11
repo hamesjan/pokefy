@@ -136,7 +136,6 @@ function CallbackPage() {
         })
       );
 
-      // Update state with the fetched images
       setPokemonImages(pokemonImagesData);
       setPokemonTypes(pokemonTypesData);
     } catch (error) {
@@ -250,20 +249,10 @@ function CallbackPage() {
                           gap: "0px",
                         }}
                       >
-                        <h3 style={{ marginBottom: "0px", marginTop: "0px" }}>
+                        <h3 className={classes.pokemon_name_holder}>
                           {pokemon.toUpperCase()}
                         </h3>
-                        <div
-                          style={{
-                            display: "flex",
-                            marginBottom: "15px",
-                            marginTop: "0px",
-                            borderRadius: "36%",
-                            padding: "2px",
-                            overflow: "hidden",
-                            backgroundColor: "#15A942",
-                          }}
-                        >
+                        <div className={classes.types_holder}>
                           <div style={{ flex: 1 }} />
                           {pokemonTypes[pokemon]?.map((type) => (
                             <img

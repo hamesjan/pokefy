@@ -57,6 +57,10 @@
       gap: 10px;
       font-size: small;
     }
+    .header{
+      margin-bottom: 0px;
+      padding-bottom: 0px;
+    }
   }
 
   .site_nav ul {

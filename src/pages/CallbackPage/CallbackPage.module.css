@@ -182,15 +182,44 @@
   animation: float 1s ease-in-out infinite;
 }
 
+.types_holder{
+  display: flex;
+  margin-bottom: 15px;
+  margin-top: 0px;
+  border-radius: 36%;
+  padding: 2px;
+  overflow: hidden;
+  background-color: #15A942;
+  
+}
+
+.pokemon_name_holder{
+  margin-top: 0px;
+  margin-bottom: 0px;
+
+}
+
 @media (max-width: 600px) {
     .rectangle {
-        width: 185px;
+        width: 165px;
         height: 80px;
+
       font-size: x-small;
+    }
+
+    .pokemon_name_holder{
+      position: relative;
+      right: 10px;
+    }
+
+    .types_holder{
+      width: fit-content;
+      position: relative;
+      left: 10px;
     }
     .grid_holder{
         margin-right: 20px;
-        
+        width: 50px;
     }
 
     .type_images{
@@ -198,7 +227,7 @@
       height: 15px;
     }
     .grid_item{
-        font-size: x-small;
+        font-size: xx-small;
         width: 80px;
         position: relative;
         right: 10px;
@@ -259,6 +288,7 @@
   }
   .results_text{
     font-size: 12px;
+    margin-top: 0px;
   }
   .all_holder{
     flex-direction: column;
